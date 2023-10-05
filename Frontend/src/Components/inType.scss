@@ -1,0 +1,59 @@
+// InType.scss
+
+$blue-700: #1a365d;
+$slate-50: #f8fafc;
+$white: #fff;
+
+.custom-container {
+  background-color: $blue-700;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  color: $white;
+
+  .custom-button {
+    width: 20rem;
+    text-align: center;
+    border-radius: 5rem;
+    border: 1px solid $slate-50;
+    padding: 1rem;
+    background-color: $white;
+    color: $blue-700;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 0px 100px 20px rgb(111, 111, 184);
+      font-weight: bolder;
+    }
+  }
+}
+
+.custom-container1 {
+  background-color: $blue-700;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  color: $white;
+
+  .custom-button1 {
+    width: 20rem;
+    text-align: center;
+    border-radius: 5rem;
+    border: 1px solid $slate-50;
+    padding: 1rem;
+    background-color: $white;
+    color: $blue-700;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 0px 100px 20px rgb(111, 111, 184);
+      font-weight: bolder;
+    }
+  }
+}
