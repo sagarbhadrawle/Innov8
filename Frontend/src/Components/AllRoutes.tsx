@@ -5,6 +5,7 @@ import InType from "./InType";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import SelectType from "./SelectType";
+import InterviewPage from "./InterviewPage";
 
 const AllRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AllRoutes = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/type" element={<SelectType />} />
+      <Route path="/tech" element={<InterviewPage/>}/>
     </Routes>
   );
 };
