@@ -19,7 +19,7 @@ public class DataInitializationService implements CommandLineRunner {
 	
 	
     private void initializeData() {
-        // Check if data already exists
+
         if (chatgptApiRepository.count() == 0) {
             // Insert default data
             Chatgpt_api chatgptApi = new Chatgpt_api();
