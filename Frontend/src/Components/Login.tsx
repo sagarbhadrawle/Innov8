@@ -1,4 +1,3 @@
-import React from "react";
 import { GoogleCredentialResponse, GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
@@ -6,7 +5,7 @@ const Login = () => {
     console.log(response);
   };
 
-  const errorMessage = (error: Error) => {
+  const errorMessage = (error: void) => {
     console.log(error);
   };
 

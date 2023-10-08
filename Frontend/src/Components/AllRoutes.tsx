@@ -1,11 +1,10 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./Dashboard";
 import HomePage from "./HomePage";
 import InType from "./InType";
-import Dashboard from "./Dashboard";
+import InterviewPage from "./InterviewPage";
 import Login from "./Login";
 import SelectType from "./SelectType";
-import InterviewPage from "./InterviewPage";
 
 const AllRoutes = () => {
   return (
@@ -15,7 +14,7 @@ const AllRoutes = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/type" element={<SelectType />} />
-      <Route path="/tech" element={<InterviewPage/>}/>
+      <Route path="/tech" element={<InterviewPage />} />
     </Routes>
   );
 };
