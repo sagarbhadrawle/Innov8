@@ -1,6 +1,3 @@
-import React from "react";
-import { ai } from "../assets";
-
 const HomePage = () => {
   return (
     <div className="bg-blue-900 grid grid-cols-2 h-screen">

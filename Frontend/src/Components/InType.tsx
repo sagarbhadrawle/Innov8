@@ -1,6 +1,5 @@
-import React from "react";
-import "./inType.scss";
 import { Link } from "react-router-dom";
+import "./inType.scss";
 
 const InType = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function InterviewPage() {
@@ -16,7 +16,6 @@ function InterviewPage() {
   const [timer, setTimer] = useState<number | null>(null);
   const [remainingTime, setRemainingTime] = useState<number | null>(null);
   const questionTimeLimit = 180;
-  const [nextButtonDisabled, setNextButtonDisabled] = useState(true);
   const [interviewInProgress, setInterviewInProgress] = useState(false);
 
   useEffect(() => {
@@ -30,7 +29,6 @@ function InterviewPage() {
 
   async function startInterview() {
     if (interviewInProgress) {
-      // Interview is already in progress, do not start again.
       return;
     }
     try {
@@ -43,8 +41,8 @@ function InterviewPage() {
         videoElement.current.srcObject = userMediaStream;
         videoElement.current.muted = true;
       }
-      startQuestionTimer();
       setInterviewInProgress(true);
+      startQuestionTimer();
     } catch (error) {
       console.error("Error accessing camera and microphone:", error);
     }
@@ -70,11 +68,14 @@ function InterviewPage() {
     clearQuestionTimer();
     setRemainingTime(questionTimeLimit);
     const questionTimer = setInterval(() => {
-      if (remainingTime !== null && remainingTime > 0) {
-        setRemainingTime((prevTime) => prevTime - 1);
-      } else {
-        setNextButtonDisabled(false);
-        clearQuestionTimer();
+      if (remainingTime !== null) {
+        if (remainingTime > 0) {
+          setRemainingTime((prevTime) =>
+            prevTime !== null ? prevTime - 1 : prevTime
+          );
+        } else {
+          moveToNextQuestion(); // Automatically move to the next question when the timer runs out
+        }
       }
     }, 1000);
 
@@ -91,8 +92,8 @@ function InterviewPage() {
   function moveToNextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-      setNextButtonDisabled(true);
-      startQuestionTimer();
+      setRemainingTime(questionTimeLimit); // Reset the timer for the next question
+      startQuestionTimer(); // Start the timer for the next question
     } else {
       stopInterview();
     }
@@ -108,26 +109,25 @@ function InterviewPage() {
             <p>
               Time remaining:{" "}
               {remainingTime !== null
-                ? `${Math.floor(remainingTime / 60)}:${
-                    remainingTime % 60 < 10 ? "0" : ""
-                  }${remainingTime % 60}`
+                ? `${Math.floor(remainingTime / 60)}:${(remainingTime % 60)
+                    .toString()
+                    .padStart(2, "0")}`
                 : "0:00"}
             </p>
-            <div className="flex justify-center item-center ">
+            <div className="flex justify-center items-center">
               <video
                 ref={videoElement}
                 autoPlay
                 playsInline
-                className=" h-64 w-64 "
+                className="h-64 w-64"
                 draggable="false"
               ></video>
             </div>
 
             <button
               id="nextButton"
-              className=" bg-sky-500 p-1 w-[10rem] rounded-full hover:shadow-md hover:font-semibold  hover:shadow-white m-2"
+              className="bg-sky-500 p-1 w-[10rem] rounded-full hover:shadow-md hover:font-semibold hover:shadow-white m-2"
               onClick={moveToNextQuestion}
-              disabled={nextButtonDisabled}
             >
               Next Question
             </button>
@@ -137,14 +137,14 @@ function InterviewPage() {
         )}
         <button
           id="startButton"
-          className=" bg-sky-500 p-1 w-[10rem] rounded-full hover:shadow-md hover:font-semibold  hover:shadow-white m-2"
+          className="bg-sky-500 p-1 w-[10rem] rounded-full hover:shadow-md hover:font-semibold hover:shadow-white m-2"
           onClick={startInterview}
         >
           Start Interview
         </button>
         <button
           id="stopButton"
-          className=" bg-sky-500 p-1 w-[10rem] rounded-full hover:shadow-md hover:font-semibold  hover:shadow-white m-2"
+          className="bg-sky-500 p-1 w-[10rem] rounded-full hover:shadow-md hover:font-semibold hover:shadow-white m-2"
           onClick={stopInterview}
         >
           Stop Interview

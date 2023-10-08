@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { log, logo } from "../assets";
+import { log } from "../assets";
 
 const Navbar = () => {
   return (

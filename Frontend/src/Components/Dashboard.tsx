@@ -1,5 +1,3 @@
-import React from "react";
-
 const Dashboard = () => {
   return (
     <div className="bg-blue-900 flex flex-col justify-center items-center p-10 ">

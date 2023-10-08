@@ -1,4 +1,3 @@
-import React from "react";
 import { fb, insta, twit } from "../assets";
 
 const Footer = () => {
